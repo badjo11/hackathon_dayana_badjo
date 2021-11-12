@@ -1,10 +1,9 @@
 import React from 'react';
+import MainHeader from '../components/mainPage/MainHeader';
 
 const MainPage = () => {
     return (
-        <div>
-            Main Page
-        </div>
+        <MainHeader />
     );
 };
 
