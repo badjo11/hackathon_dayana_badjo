@@ -75,9 +75,9 @@ const UserContextProvider = (props) => {
             console.log(e)
         }
     }
-    const editDoctor = async (editedUser, id) => {
+    const editDoctor = async (editedUser, user) => {
         try {
-            await axios.patch(APIusers + '/' + id, editedUser)
+            await axios.patch(APIusers + '/' + user.id, editedUser)
             getUser(user)
         } catch (e) {
             console.log(e)
