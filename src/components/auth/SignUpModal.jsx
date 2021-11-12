@@ -9,6 +9,7 @@ const SignUpModal = (props) => {
         username: yup.string().min(2).max(30).required("Required"),
         type: yup.string().min(4).max(6).required("Required"),
         email: yup.string().email().min(3).max(255).required("Required"),
+        age: yup.number().min(1).max(220).required("Required"),
         password: yup
             .string()
             .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)
@@ -23,7 +24,7 @@ const SignUpModal = (props) => {
 
     function handleSignup(data) {
         // e.preventDefault();
-        signUpUser(data.username, data.password, data.email, data.type);
+        signUpUser(data.username, data.password, data.email, data.type, data.age);
         props.handleClose();
     }
 
@@ -43,13 +44,14 @@ const SignUpModal = (props) => {
                             username: "",
                             type: "",
                             email: "",
+                            age: "",
                             password: "",
                             passwordConfirmation: "",
                         }}
                     >
                         {({ handleSubmit, handleChange, values, touched, errors }) => (
                             <Form
-                                style={{ width: "70%" }}
+                                style={{ width: "90%", margin: '0 auto' }}
                                 className="bg-light p-4"
                                 onSubmit={handleSubmit}
                             >
@@ -81,6 +83,21 @@ const SignUpModal = (props) => {
                                     />
                                     <Form.Control.Feedback type="invalid">
                                         {errors.email}
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Label>Your age</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Enter your age"
+                                        name="age"
+                                        onChange={handleChange}
+                                        isValid={!errors.age && touched.age}
+                                        isInvalid={!!errors.age}
+                                        value={values.age}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.age}
                                     </Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group className="mb-3">

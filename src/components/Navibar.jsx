@@ -13,13 +13,16 @@ const Navibar = () => {
     const handleCloseLogin = () => setShowLogin(false);
     const handleShowLogin = () => setShowLogin(true);
     let button;
-
+    let doctorRoom
     function logout() {
         logoutUser();
         localStorage.clear();
     }
 
     if (user) {
+        if (user.type === 'doctor') {
+            doctorRoom = <Nav.Link href="#link">Личный кабинет</Nav.Link>
+        }
         let struser = JSON.stringify(user);
         localStorage.setItem("user", struser);
         button = (
@@ -73,11 +76,11 @@ const Navibar = () => {
                 <Navbar.Brand href="#home"><img src={logo_img} alt="" /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
+                    <Nav className="mx-auto ">
+                        <Nav.Link href="#home" className='px-4'>Главная</Nav.Link>
+                        <Nav.Link href="#link" className='px-4'>Пациентам</Nav.Link>
+                        <Nav.Link href="#link" className='px-4'>Контакты</Nav.Link>
+                        {doctorRoom}
                     </Nav>
                     <Nav className='ms-auto'>
                         {button}

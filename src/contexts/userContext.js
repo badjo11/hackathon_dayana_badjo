@@ -16,6 +16,8 @@ const reducer = (state = INIT_STATE, action) => {
             return { ...state, failedLogin: action.payload };
         case "LOGOUT_USER":
             return { ...state, user: action.payload };
+        case "GET_USER":
+            return { ...state, user: action.payload }
         default:
             return state;
     }
@@ -24,7 +26,7 @@ const reducer = (state = INIT_STATE, action) => {
 const UserContextProvider = (props) => {
     const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
-    const signUpUser = async (username, password, email, type) => {
+    const signUpUser = async (username, password, email, type, age) => {
         try {
             let res = await axios(APIusers);
             let user = res.data.find((user) => user.username === username);
@@ -35,6 +37,10 @@ const UserContextProvider = (props) => {
                         password,
                         email,
                         type,
+                        age,
+                        experience: null,
+                        specialty: null,
+                        education: null,
                     });
                     dispatch({
                         type: "LOGIN_USER",
@@ -57,7 +63,26 @@ const UserContextProvider = (props) => {
             console.log(e);
         }
     };
-
+    const getUser = async (id) => {
+        try {
+            // console.log(user)
+            let response = await axios(APIusers + '/' + id);
+            dispatch({
+                type: "GET_USER",
+                payload: response.data,
+            });
+        } catch (e) {
+            console.log(e)
+        }
+    }
+    const editDoctor = async (editedUser, id) => {
+        try {
+            await axios.patch(APIusers + '/' + id, editedUser)
+            getUser(user)
+        } catch (e) {
+            console.log(e)
+        }
+    }
     const loginUser = async (username, password) => {
         try {
             let res = await axios(APIusers);
@@ -107,6 +132,8 @@ const UserContextProvider = (props) => {
                 loginUser,
                 logoutUser,
                 setUser,
+                editDoctor,
+                getUser,
                 user: state.user,
                 state,
             }}
