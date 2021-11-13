@@ -57,6 +57,7 @@ const DoctorRoom = () => {
                     <Modal.Title>Изменить данные</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    {/* qwe */}
                     <Form>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>Специальность</Form.Label>
