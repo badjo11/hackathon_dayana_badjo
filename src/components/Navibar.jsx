@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Container, Nav, Navbar, Button, Badge } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router'
 import { userContext } from '../contexts/userContext';
 import logo_img from '../images/logo.svg'
 import LogInModal from './auth/LogInModal';
@@ -15,8 +16,11 @@ const Navibar = () => {
     const handleShowLogin = () => setShowLogin(true);
     let button;
     let doctorRoom
+    // const history = useHistory();
+    const history = useNavigate()
     function logout() {
         logoutUser();
+        history('/')
         localStorage.clear();
     }
     let content

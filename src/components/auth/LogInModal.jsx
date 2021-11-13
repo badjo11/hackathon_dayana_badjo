@@ -5,7 +5,6 @@ import { userContext } from "../../contexts/userContext";
 const LogInModal = (props) => {
     const { loginUser } = useContext(userContext);
     const [user, setUser] = useState({ username: "", password: "" });
-    // console.log(state)
     function handleChange(e) {
         let userr = { ...user, [e.target.name]: e.target.value };
         setUser(userr);

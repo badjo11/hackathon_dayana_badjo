@@ -13,6 +13,9 @@ const DoctorRoom = () => {
     useEffect(() => {
         getUser(params.id);
     }, []);
+    function handleChange(val) {
+        console.log(val)
+    }
     // console.log(user)
     return (
         <div className="container">
@@ -57,21 +60,26 @@ const DoctorRoom = () => {
                     <Modal.Title>Изменить данные</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {/* qwe */}
-                    <Form>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Специальность</Form.Label>
-                            <Form.Control type="text" placeholder="Ваша специальность" />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Опыт работы</Form.Label>
-                            <Form.Control type="number" placeholder="Ваш опыт работы" />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Образование</Form.Label>
-                            <Form.Control type="text" placeholder="Ваше образование " />
-                        </Form.Group>
-                    </Form>
+                    {
+                        user ? (
+                            <Form>
+
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Специальность</Form.Label>
+                                    <Form.Control onChange={(e) => { handleChange(e.target.value) }} type="text" placeholder="Ваша специальность" defaultValue={user.specialty} />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Опыт работы</Form.Label>
+                                    <Form.Control onChange={(e) => { handleChange(e.target.value) }} type="text" placeholder="Ваш опыт работы" defaultValue={user.experience} />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Образование</Form.Label>
+                                    <Form.Control onChange={(e) => { handleChange(e.target.value) }} type="text" placeholder="Ваше образование " defaultValue={user.education} />
+                                </Form.Group>
+                            </Form>
+                        ) : (<h3>Loading...</h3>)
+                    }
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>

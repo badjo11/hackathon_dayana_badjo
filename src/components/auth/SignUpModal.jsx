@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Modal, Form, InputGroup, FormControl } from "react-bootstrap";
+import { Button, Modal, Form } from "react-bootstrap";
 import * as yup from "yup";
 import { Formik } from "formik";
 import { userContext } from "../../contexts/userContext";
@@ -71,7 +71,7 @@ const SignUpModal = (props) => {
                                 {errors.username}
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" controlId="formBasicEmail1">
                             <Form.Label>Email адрес</Form.Label>
                             <Form.Control
                                 type="email"
@@ -86,7 +86,7 @@ const SignUpModal = (props) => {
                                 {errors.email}
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" controlId="formBasicEmail2">
                             <Form.Label>Ваш возраст</Form.Label>
                             <Form.Control
                                 type="text"
@@ -101,7 +101,7 @@ const SignUpModal = (props) => {
                                 {errors.age}
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" controlId="formBasicEmail3">
                             <Form.Label>Ваша специальность</Form.Label>
                             <Form.Control
                                 type="text"
@@ -116,7 +116,7 @@ const SignUpModal = (props) => {
                                 {errors.specialty}
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" controlId="formBasicEmail4">
                             <Form.Label>Ваше образование</Form.Label>
                             <Form.Control
                                 type="text"
@@ -131,7 +131,7 @@ const SignUpModal = (props) => {
                                 {errors.education}
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" controlId="formBasicEmail5">
                             <Form.Label>Ваш опыт работы</Form.Label>
                             <Form.Control
                                 type="text"
@@ -146,7 +146,7 @@ const SignUpModal = (props) => {
                                 {errors.experience}
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Group className="mb-3" controlId="formBasicPassword1">
                             <Form.Label>Пароль</Form.Label>
                             <Form.Control
                                 type="password"
@@ -162,7 +162,7 @@ const SignUpModal = (props) => {
                             </Form.Control.Feedback>
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Group className="mb-3" controlId="formBasicPassword2">
                             <Form.Label>Повторите пароль</Form.Label>
                             <Form.Control
                                 type="password"
@@ -230,7 +230,7 @@ const SignUpModal = (props) => {
                         onSubmit={handleSubmit}
                     >
 
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" controlId="formBasicEmail1">
                             <Form.Label>Ваш профиль</Form.Label>
                             <Form.Control
                                 type="text"
@@ -245,7 +245,7 @@ const SignUpModal = (props) => {
                                 {errors.username}
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" controlId="formBasicEmail2">
                             <Form.Label>Email адрес</Form.Label>
                             <Form.Control
                                 type="email"
@@ -260,7 +260,7 @@ const SignUpModal = (props) => {
                                 {errors.email}
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" controlId="formBasicEmail3">
                             <Form.Label>Ваш возраст</Form.Label>
                             <Form.Control
                                 type="text"
@@ -275,7 +275,7 @@ const SignUpModal = (props) => {
                                 {errors.age}
                             </Form.Control.Feedback>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Group className="mb-3" controlId="formBasicPassword4">
                             <Form.Label>Ваш пароль</Form.Label>
                             <Form.Control
                                 type="password"
@@ -291,7 +291,7 @@ const SignUpModal = (props) => {
                             </Form.Control.Feedback>
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Group className="mb-3" controlId="formBasicPassword5">
                             <Form.Label>Повторите пароль</Form.Label>
                             <Form.Control
                                 type="password"
