@@ -4,7 +4,7 @@ import logo_img10 from '../images/footerpic.svg'
 
 const Footer = () => {
     return (
-        <div сlassName='my-footer'>
+        <div className='my-footer'>
             <div>
                 <img style={{ width: '100%', paddingTop: '30px' }} src={logo_img10} alt="" />
             </div>
