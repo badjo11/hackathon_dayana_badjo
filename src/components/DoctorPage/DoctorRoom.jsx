@@ -16,7 +16,7 @@ const DoctorRoom = () => {
     function handleChange(val) {
         console.log(val)
     }
-    // console.log(user)
+    console.log(user)
     return (
         <div className="container">
             {
