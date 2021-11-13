@@ -13,7 +13,7 @@ const DoctorRoom = () => {
     useEffect(() => {
         getUser(params.id);
     }, []);
-    console.log(user)
+    // console.log(user)
     return (
         <div className="container">
             {

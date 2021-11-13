@@ -19,8 +19,10 @@ const Navibar = () => {
         logoutUser();
         localStorage.clear();
     }
+    let content
 
     if (user) {
+
         if (user.type === 'doctor') {
             doctorRoom = <Link to={'/doctor/' + user.id}>Личный кабинет</Link>
         }
@@ -68,7 +70,7 @@ const Navibar = () => {
             setUser(JSON.parse(struser));
         }
     }
-    useEffect(() => setuser(), [struser]);
+    useEffect(() => setuser(struser), [struser]);
 
 
     return (
@@ -82,12 +84,14 @@ const Navibar = () => {
                         <Link to="/link" className='px-4'>Пациентам</Link>
                         <Link to="/link" className='px-4'>Контакты</Link>
                         {doctorRoom}
+                        {content}
                     </Nav>
                     <Nav className='ms-auto'>
                         {button}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
+
             <SignUpModal handleClose={handleClose} show={show} />
             <LogInModal handleCloseLogin={handleCloseLogin} showLogin={showLogin} />
         </Navbar>

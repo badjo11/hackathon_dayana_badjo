@@ -26,9 +26,10 @@ const reducer = (state = INIT_STATE, action) => {
 const UserContextProvider = (props) => {
     const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
-    const signUpUser = async (username, password, email, type, age) => {
+    const signUpUser = async (username, password, email, type, age, specialty, education, experience) => {
         try {
             let res = await axios(APIusers);
+            // console.log(type)
             let user = res.data.find((user) => user.username === username);
             if (user === undefined) {
                 try {
@@ -38,9 +39,9 @@ const UserContextProvider = (props) => {
                         email,
                         type,
                         age,
-                        experience: null,
-                        specialty: null,
-                        education: null,
+                        experience,
+                        specialty,
+                        education,
                     });
                     dispatch({
                         type: "LOGIN_USER",
