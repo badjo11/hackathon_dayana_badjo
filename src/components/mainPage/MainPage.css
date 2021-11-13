@@ -142,3 +142,33 @@
 .article {
     background-color: white;
 }
+
+@media all and (max-width: 992px) {
+    .right-side {
+        display: none;
+    }
+    .first_footer_inner {
+        display: none;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .second_footer_inner {
+        display: none;
+    }
+}
+
+@media all and (max-width: 320px) {
+    .third_footer_inner {
+        display: none;
+    }
+    .third-session {
+        display: none;
+    }
+}
+
+@media all and (max-width: 375px) {
+    .third-session {
+        display: none;
+    }
+}

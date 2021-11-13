@@ -105,7 +105,7 @@ const MainHeader = () => {
                     <Carousel>
                         <Carousel.Item>
                             <img
-                                className="d-block w-100"
+                                className=" d-block w-100"
                                 src={logo_img7}
                                 alt="First slide"
                             />
@@ -196,7 +196,7 @@ const MainHeader = () => {
                                 </Accordion>
                             </div>
                             <div className="right-side ms-4">
-                                <img src={logo_img9} alt="" />
+                                <img className="adaptive-pic" src={logo_img9} alt="" />
                                 <h3 className="rigth-side-text">Lorem ipsum dolor sit amet?</h3>
                                 <p>Id sit velit pariatur et magna nostrud qui nisi veniam cupidatat. Sunt voluptate amet fugiat labore veniam minim. Ad pariatur proident magna magna amet velit eiusmod. Minim occaecat tempor anim aute mollit do incididunt dolore officia est laborum aliqua. Nulla consequat ad et pariatur nostrud ex aute et. </p>
                                 <Button className="btn-right-side">Ещё</Button>
