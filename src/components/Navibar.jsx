@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Container, Nav, Navbar, Button, Badge } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { userContext } from '../contexts/userContext';
 import logo_img from '../images/logo.svg'
 import LogInModal from './auth/LogInModal';
@@ -21,7 +22,7 @@ const Navibar = () => {
 
     if (user) {
         if (user.type === 'doctor') {
-            doctorRoom = <Nav.Link href="#link">Личный кабинет</Nav.Link>
+            doctorRoom = <Link to={'/doctor/' + user.id}>Личный кабинет</Link>
         }
         let struser = JSON.stringify(user);
         localStorage.setItem("user", struser);
@@ -77,9 +78,9 @@ const Navibar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mx-auto ">
-                        <Nav.Link href="#home" className='px-4'>Главная</Nav.Link>
-                        <Nav.Link href="#link" className='px-4'>Пациентам</Nav.Link>
-                        <Nav.Link href="#link" className='px-4'>Контакты</Nav.Link>
+                        <Link to="/" className='px-4'>Главная</Link>
+                        <Link to="/link" className='px-4'>Пациентам</Link>
+                        <Link to="/link" className='px-4'>Контакты</Link>
                         {doctorRoom}
                     </Nav>
                     <Nav className='ms-auto'>
