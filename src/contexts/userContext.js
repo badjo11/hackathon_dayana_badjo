@@ -18,6 +18,8 @@ const reducer = (state = INIT_STATE, action) => {
             return { ...state, user: action.payload };
         case "GET_USER":
             return { ...state, user: action.payload }
+        case "CLEAR_STATE":
+            return { ...state, phone: action.payload }
         default:
             return state;
     }
@@ -79,7 +81,20 @@ const UserContextProvider = (props) => {
     const editDoctor = async (editedUser, user) => {
         try {
             await axios.patch(APIusers + '/' + user.id, editedUser)
-            getUser(user)
+            // getUser(user)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+    const clearState = () => {
+        dispatch({
+            type: "CLEAR_STATE",
+            payload: null,
+        })
+    }
+    const deleteUser = async (id) => {
+        try {
+            await axios.delete(APIusers + '/' + id)
         } catch (e) {
             console.log(e)
         }
@@ -134,7 +149,9 @@ const UserContextProvider = (props) => {
                 logoutUser,
                 setUser,
                 editDoctor,
+                deleteUser,
                 getUser,
+                clearState,
                 user: state.user,
                 state,
             }}
