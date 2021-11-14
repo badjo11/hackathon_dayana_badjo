@@ -1,7 +1,6 @@
 import React from 'react';
 import { Accordion, Card, FormControl, InputGroup } from 'react-bootstrap';
 import './MainPage.css'
-import logo_img from '../../images/search.svg'
 import logo_img1 from '../../images/firstCardOnline.svg'
 import logo_img2 from '../../images/secondCardOnline.svg'
 import logo_img3 from '../../images/thirdCardInline.svg'
@@ -14,6 +13,7 @@ import logo_img9 from '../../images/picofhospital.svg'
 import Button from '@restart/ui/esm/Button';
 import { Carousel } from 'react-bootstrap';
 import Footer from '../Footer';
+import SearchDoc from './SearchDoc';
 
 
 const MainHeader = () => {
@@ -23,12 +23,7 @@ const MainHeader = () => {
             <div className="search">
                 <div className="search-main-text">
                     <h1 className="main-text">Найдите проверенного врача и запишитесь на прием</h1>
-                    <InputGroup size="lg" >
-                        <FormControl placeholder="пример: имя, специальность" />
-                        <InputGroup.Text id="inputGroup-sizing-lg" >
-                            <img src={logo_img} alt="" />
-                        </InputGroup.Text>
-                    </InputGroup>
+                    <SearchDoc />
                 </div>
             </div>
             <div className="first-cards d-flex container">

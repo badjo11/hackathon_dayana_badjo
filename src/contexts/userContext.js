@@ -4,6 +4,7 @@ import { APIusers } from "../config/const";
 export const userContext = React.createContext();
 
 const INIT_STATE = {
+    doctors: null,
     user: null,
     failedLogin: null,
 };
@@ -20,6 +21,8 @@ const reducer = (state = INIT_STATE, action) => {
             return { ...state, user: action.payload }
         case "CLEAR_STATE":
             return { ...state, phone: action.payload }
+        case "GET_ALL_DOCS":
+            return { ...state, doctors: action.payload }
         default:
             return state;
     }
@@ -66,6 +69,21 @@ const UserContextProvider = (props) => {
             console.log(e);
         }
     };
+    const getAllDocs = async () => {
+        try {
+            let { data } = await axios(APIusers)
+            let result = data.filter(item => {
+                return item.type === 'doctor'
+            })
+            // console.log(result)
+            dispatch({
+                type: 'GET_ALL_DOCS',
+                payload: result,
+            })
+        } catch (e) {
+            console.log(e);
+        }
+    }
     const getUser = async (id) => {
         try {
             // console.log(user)
@@ -152,6 +170,8 @@ const UserContextProvider = (props) => {
                 deleteUser,
                 getUser,
                 clearState,
+                getAllDocs,
+                doctors: state.doctors,
                 user: state.user,
                 state,
             }}
