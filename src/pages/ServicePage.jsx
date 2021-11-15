@@ -11,7 +11,7 @@ const ServicePage = () => {
     const { addServices, getServices, deleteService, services, currentPosts, setCurrentPage } = useContext(serviceContext)
     const schema = yup.object().shape({
         name: yup.string().min(2).max(30).required("Required"),
-        category: yup.string().min(4).max(6).required("Required"),
+        category: yup.string().required("Required"),
         price: yup.string().min(3).max(255).required("Required"),
     })
     useEffect(() => {

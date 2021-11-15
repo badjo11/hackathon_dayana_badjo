@@ -42,8 +42,8 @@ const Navibar = () => {
                         Signed in as: <Badge bg="secondary">{user.username}</Badge>
                     </Navbar.Text>
                 </Navbar.Collapse>
-                <Button className="me-2" variant="primary" onClick={() => logout()}>
-                    Logout
+                <Button style={{ padding: '0 40px', border: 'none' }} className="me-2" onClick={() => logout()}>
+                    LogOut
                 </Button>
             </>
         );
@@ -51,16 +51,18 @@ const Navibar = () => {
         button = (
             <>
                 <Button
-                    className="me-2 text-success"
-                    variant="outline-dark"
+                    className="me-2 text-white"
                     onClick={handleShowLogin}
+                    style={{ border: 'none', }}
+
+
                 >
                     Log In
                 </Button>
                 <Button
-                    className="me-2 text-success"
-                    variant="outline-dark"
+                    className="me-2 text-white"
                     onClick={handleShow}
+                    style={{ border: 'none' }}
                 >
                     Sign Up
                 </Button>

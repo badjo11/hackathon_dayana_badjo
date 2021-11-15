@@ -35,7 +35,7 @@ const DoctorRoom = () => {
         <div className="container">
             {
                 user ? (
-                    <div>
+                    <div className='container'>
                         <h2>Личный кабинет {user.username}</h2>
                         <h3>Специальность: {
                             user.specialty ? (
