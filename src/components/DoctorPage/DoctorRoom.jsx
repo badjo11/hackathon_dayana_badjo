@@ -5,7 +5,7 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import * as yup from "yup";
 import { Formik } from "formik";
 const DoctorRoom = () => {
-    const { getUser, user,getDoctor, doctor, editDoctor, deleteUser, logoutUser, clearState } = useContext(userContext)
+    const { getUser, user, getDoctor, doctor, editDoctor, deleteUser, logoutUser, clearState } = useContext(userContext)
     const [show, setShow] = useState(false);
     useEffect(() => {
         clearState()
@@ -32,11 +32,11 @@ const DoctorRoom = () => {
     const history = useNavigate()
 
     return (
-        <div className="container">
+        <div className='container1' style={{ backgroundColor: '#F4F4F4' }} >
             {
                 doctor ? (
-                    <div className='container'>
-                        <h2>Личный кабинет {doctor.username}</h2>
+                    <div className='container' style={{ backgroundColor: 'white', boxShadow: '4px 4px 8px 0px rgba(23, 27, 30, 0.63)', textAlign: 'center' }} >
+                        <h2>Личный кабинет:  {doctor.username}</h2>
                         <h3>Специальность: {
                             doctor.specialty ? (
                                 doctor.specialty
@@ -68,11 +68,11 @@ const DoctorRoom = () => {
                 )
             }
             {
-                user ?(user.type==='doctor' ? (<><Button onClick={handleShow}>Редактировать данные</Button>
-                    <Button variant="secondary" color="secondary" onClick={handleDelete}>
+                user ? (user.type === 'doctor' ? (<><Button style={{ border: 'none', fontSize: '20px' }} onClick={handleShow}>Редактировать данные</Button>
+                    <Button style={{ border: 'none', fontSize: '20px', }} onClick={handleDelete}>
                         Удалить профиль
-                    </Button></>): (<Button>Записаться к врачу</Button>)):(<h2>Loading</h2>)
-                    
+                    </Button></>) : (<Button >Записаться к врачу</Button>)) : (<h2>Loading</h2>)
+
             }
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
