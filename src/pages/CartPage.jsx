@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Table,Button } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { serviceContext } from '../contexts/serviceContext';
 
@@ -10,18 +10,19 @@ const CartPage = () => {
     }, [])
     return (
         <div>
-            <h2>Корзина</h2>
+            <h2 >Корзина</h2>
             {
                 cart ? (
-                        <Table striped bordered hover>
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th align="right">Category</th>
-                                    <th align="right">Count</th>
-                                    <th align="right">Summa</th>
-                                </tr>
-                            </thead>
+                    <Table striped bordered hover>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th align="right">Category</th>
+                                <th align="right">Count</th>
+                                <th align="right">Summa</th>
+                            </tr>
+                        </thead>
+                   
                             <tbody>
                                 {cart.services.map((item) => (
                                     <tr
@@ -44,16 +45,20 @@ const CartPage = () => {
                                 </tr>
                             </tbody>
                         </Table>
+
+              
                 ) : (
                     <h2>Вы еще не добавили услуги в корзину</h2>
                 )
             }
 
+
             <h3>Total price: {cart ? cart.totalPrice : 0} сом</h3>
             {
             
-            cart? <Link to='/order'><Button>Произвести оплату</Button></Link> : <></>
+            cart? <Link to='/order'><Button style={{ backgroundColor: '#31B8BF', border: 'none' }}>Произвести оплату</Button></Link> : <></>
             }
+
         </div>
     );
 };

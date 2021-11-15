@@ -8,7 +8,7 @@ import Pagination from '../components/Pagination';
 
 const ServicePage = () => {
 
-    const { addServices, getServices, deleteService, services, currentPosts, setCurrentPage, addAndDeleteServiceInCart, checkServiceInCart  } = useContext(serviceContext)
+    const { addServices, getServices, deleteService, services, currentPosts, setCurrentPage, addAndDeleteServiceInCart, checkServiceInCart } = useContext(serviceContext)
     const schema = yup.object().shape({
         name: yup.string().min(2).max(30).required("Required"),
         category: yup.string().required("Required"),
@@ -22,7 +22,7 @@ const ServicePage = () => {
     let buttons
     let object = new URLSearchParams(window.location.search)
     const [brandValue, setBrandValue] = useState('')
-    function filterPhones  (key, value) {
+    function filterPhones(key, value) {
         object.set(key, value)
         let newUrl = `${window.location.pathname}?${object.toString()}`
         navigate(newUrl)
@@ -182,10 +182,10 @@ const ServicePage = () => {
                                         <Card.Subtitle>Категория услуги: {item.category}</Card.Subtitle>
                                         <Card.Text>Цена услуги: {item.price}</Card.Text>
                                         {
-                                            user ? ((user.type === 'doctor' && user )? (<><Link to={'/edit/' + item.id}><Button style={{ marginLeft: '0', marginBottom: '10px', border: 'none' }} >Редактировать</Button></Link>
+                                            user ? ((user.type === 'doctor' && user) ? (<><Link to={'/edit/' + item.id}><Button style={{ marginLeft: '0', marginBottom: '10px', border: 'none' }} >Редактировать</Button></Link>
                                                 <Button style={{ marginLeft: '0', border: 'none' }} onClick={() => { deleteService(item.id) }}>Удалить</Button></>) : (<>
-                                                    <Button variant={checkServiceInCart(item.id) ? 'danger' : 'success'} onClick={() => addAndDeleteServiceInCart(item)}>Корзина</Button>
-                                                </>)) : (<h2>Loading...</h2>)
+                                                    <Button variant={checkServiceInCart(item.id) ? 'danger' : 'primary'} onClick={() => addAndDeleteServiceInCart(item)}>Корзина</Button>
+                                                </>)) : (<></>)
                                         }
                                         {/* sad */}
                                     </Card.Body>
