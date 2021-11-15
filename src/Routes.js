@@ -4,10 +4,12 @@ import Navibar from './components/Navibar';
 import ServiceContextProvider from './contexts/serviceContext';
 import UserContextProvider from './contexts/userContext';
 import CartPage from './pages/CartPage';
+import AllDoctorsPage from './pages/AllDoctorsPage';
 import DoctorPage from './pages/DoctorPage';
 import EditPage from './pages/EditPage';
 import MainPage from './pages/MainPage';
 import ServicePage from './pages/ServicePage';
+import OrderPage from './pages/OrderPage';
 
 const MyRoutes = () => {
     return (
@@ -21,8 +23,9 @@ const MyRoutes = () => {
                         <Route path='/service' element={<ServicePage />} />
                         <Route path="/edit/:id" element={<EditPage />} />
                         <Route path="/cart" element={<CartPage />} />
+                        <Route path="/doctor" element={<AllDoctorsPage />} />
+                        <Route path='/order' element={<OrderPage />} />
                     </Routes>
-
                 </BrowserRouter>
             </ServiceContextProvider>
         </UserContextProvider>

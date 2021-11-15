@@ -51,11 +51,11 @@ const MainHeader = () => {
                 <Card style={{ width: '18rem', boxShadow: '4px 4px 8px 0px rgba(23, 27, 30, 0.63)' }}>
                     <Card.Img style={{ width: "100px", margin: '0 auto', padding: '15px' }} src={logo_img3} />
                     <Card.Body>
-                        <Card.Title style={{ color: '#31B8BF', textAlign: 'center' }}>Вызвать врача на дом</Card.Title>
+                        <Card.Title style={{ color: '#31B8BF', textAlign: 'center' }}>Записаться к врачу</Card.Title>
                         <Card.Text style={{ color: 'black', textAlign: 'center' }}>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                         </Card.Text>
-                        <Button className="btn" >Вызвать</Button>
+                        <Link to='/doctor'><Button className="btn" >Записаться </Button></Link>
                     </Card.Body>
                 </Card>
             </div>
