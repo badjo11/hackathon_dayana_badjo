@@ -38,7 +38,9 @@ const EditPage = () => {
                                 onSubmit={handleSubmit}
                             >
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Label>Название услуги</Form.Label>
+                                    <Form.Label>Название услуги
+
+                                    </Form.Label>
                                     <Form.Control
                                         type="text"
                                         placeholder="Введите название услуги"
