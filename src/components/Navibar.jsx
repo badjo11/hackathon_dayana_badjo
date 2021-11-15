@@ -86,7 +86,7 @@ const Navibar = () => {
                     <Nav className="mx-auto ">
                         <Link to="/" className='px-4'>Главная</Link>
                         <Link to="/link" className='px-4'>Пациентам</Link>
-                        <Link to="/link" className='px-4'>Контакты</Link>
+                        <Link to="/service" className='px-4'>Услуги</Link>
                         {doctorRoom}
                         {content}
                     </Nav>
