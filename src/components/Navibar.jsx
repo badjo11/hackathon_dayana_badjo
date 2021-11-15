@@ -33,6 +33,9 @@ const Navibar = () => {
 
         if (user.type === 'doctor') {
             doctorRoom = <Link to={'/doctor/' + user.id}>Личный кабинет</Link>
+        }else{
+            
+            doctorRoom = <Link to='/cart'> <Badge bg="secondary">{countOfServices}<BsFillCartFill/></Badge></Link>
         }
         let struser = JSON.stringify(user);
         localStorage.setItem("user", struser);
@@ -95,7 +98,6 @@ const Navibar = () => {
                         <Link to="/service" className='px-4'>Услуги</Link>
                         {doctorRoom}
                         {content}
-                       <Link to='/cart'> <Badge bg="secondary">{countOfServices}<BsFillCartFill/></Badge></Link>
                         
                     </Nav>
                     <Nav className='ms-auto'>

@@ -40,17 +40,20 @@ const CartPage = () => {
                                 ))}
                                 <tr >
                                     <td colSpan={3} align="right" style={{ fontWeight: 'bold', fontSize: '18px' }}>Total: </td>
-                                    <td align="right" style={{ fontWeight: 'bold', fontSize: '18px' }}>{cart.totalPrice} сом</td>
+                                    <td align="right" style={{ fontWeight: 'bold', fontSize: '18px' }}>{cart ? cart.totalPrice : 0} сом</td>
                                 </tr>
                             </tbody>
                         </Table>
                 ) : (
-                    <h2>Loading...</h2>
+                    <h2>Вы еще не добавили услуги в корзину</h2>
                 )
             }
 
-            <h3>Total price: {cart.totalPrice} сом</h3>
-            <Link to='/order'><Button>Произвести оплату</Button></Link>
+            <h3>Total price: {cart ? cart.totalPrice : 0} сом</h3>
+            {
+            
+            cart? <Link to='/order'><Button>Произвести оплату</Button></Link> : <></>
+            }
         </div>
     );
 };
