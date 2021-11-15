@@ -16,11 +16,11 @@ const Pagination = () => {
                         <li key={page}>
                             {
                                 currentPage === page ? (
-                                    <Button variant="outline-success" style={{ backgroundColor: 'red' }} onClick={() => {
+                                    <Button variant="outline-success" style={{ backgroundColor: '#979797', border: 'none', marginTop: '15px' }} onClick={() => {
                                         handlePage(page)
                                     }} >{page}</Button>
                                 ) : (
-                                    <Button onClick={
+                                    <Button style={{ border: 'none', marginTop: '15px' }} onClick={
                                         () => {
                                             handlePage(page)
                                         }
