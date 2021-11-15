@@ -7,8 +7,11 @@ import logo_img from '../images/logo.svg'
 import LogInModal from './auth/LogInModal';
 import SignUpModal from './auth/SignUpModal';
 import { BsFillCartFill } from "react-icons/bs";
+import { serviceContext } from '../contexts/serviceContext';
+
 const Navibar = () => {
     const { user, logoutUser, setUser } = useContext(userContext);
+    const { countOfServices}= useContext(serviceContext)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -92,7 +95,7 @@ const Navibar = () => {
                         <Link to="/service" className='px-4'>Услуги</Link>
                         {doctorRoom}
                         {content}
-                        <Badge bg="secondary">9<BsFillCartFill/></Badge>
+                       <Link to='/cart'> <Badge bg="secondary">{countOfServices}<BsFillCartFill/></Badge></Link>
                         
                     </Nav>
                     <Nav className='ms-auto'>
