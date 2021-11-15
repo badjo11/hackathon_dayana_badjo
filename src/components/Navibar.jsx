@@ -6,6 +6,7 @@ import { userContext } from '../contexts/userContext';
 import logo_img from '../images/logo.svg'
 import LogInModal from './auth/LogInModal';
 import SignUpModal from './auth/SignUpModal';
+import { BsFillCartFill } from "react-icons/bs";
 const Navibar = () => {
     const { user, logoutUser, setUser } = useContext(userContext);
     const [show, setShow] = useState(false);
@@ -91,6 +92,8 @@ const Navibar = () => {
                         <Link to="/service" className='px-4'>Услуги</Link>
                         {doctorRoom}
                         {content}
+                        <Badge bg="secondary">9<BsFillCartFill/></Badge>
+                        
                     </Nav>
                     <Nav className='ms-auto'>
                         {button}
