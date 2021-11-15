@@ -183,7 +183,7 @@ const ServicePage = () => {
                                                     <Button href="#">Корзина</Button>
                                                 </>)) : (<h2>Loading...</h2>)
                                         }
-
+{/* sad */}
                                     </Card.Body>
                                 </Card>
                             })
