@@ -5,7 +5,7 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import * as yup from "yup";
 import { Formik } from "formik";
 const DoctorRoom = () => {
-    const { getUser, user, editDoctor, deleteUser, logoutUser, clearState } = useContext(userContext)
+    const { getUser, user,getDoctor, doctor, editDoctor, deleteUser, logoutUser, clearState } = useContext(userContext)
     const [show, setShow] = useState(false);
     useEffect(() => {
         clearState()
@@ -27,38 +27,38 @@ const DoctorRoom = () => {
     });
     const params = useParams();
     useEffect(() => {
-        getUser(params.id);
+        getDoctor(params.id);
     }, []);
     const history = useNavigate()
 
     return (
         <div className="container">
             {
-                user ? (
+                doctor ? (
                     <div className='container'>
-                        <h2>Личный кабинет {user.username}</h2>
+                        <h2>Личный кабинет {doctor.username}</h2>
                         <h3>Специальность: {
-                            user.specialty ? (
-                                user.specialty
+                            doctor.specialty ? (
+                                doctor.specialty
                             ) : (
                                 "Не заполнено"
                             )
                         }</h3>
                         <h3>Возраст: {
-                            user.age ? (
-                                user.age
+                            doctor.age ? (
+                                doctor.age
                             ) : (
                                 'Не заполнено'
                             )}</h3>
                         <h3>Образование: {
-                            user.education ? (
-                                user.education
+                            doctor.education ? (
+                                doctor.education
                             ) : (
                                 'Не заполнено'
                             )}</h3>
                         <h3>Опыт работы: {
-                            user.experience ? (
-                                user.experience
+                            doctor.experience ? (
+                                doctor.experience
                             ) : (
                                 'Не заполнено'
                             )}</h3>
@@ -67,24 +67,27 @@ const DoctorRoom = () => {
                     <h2>Loading</h2>
                 )
             }
-            <Button onClick={handleShow}>Редактировать данные</Button>
-            <Button variant="secondary" color="secondary" onClick={handleDelete}>
-                Удалить профиль
-            </Button>
+            {
+                user ?(user.type==='doctor' ? (<><Button onClick={handleShow}>Редактировать данные</Button>
+                    <Button variant="secondary" color="secondary" onClick={handleDelete}>
+                        Удалить профиль
+                    </Button></>): (<Button>Записаться к врачу</Button>)):(<h2>Loading</h2>)
+                    
+            }
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Изменить данные</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {
-                        user ? (
+                        doctor ? (
                             <Formik
                                 validationSchema={schema}
                                 onSubmit={(data) => {
-                                    editDoctor(data, user);
-                                    getUser(user.id)
+                                    editDoctor(data, doctor);
+                                    getDoctor(doctor.id)
                                 }}
-                                initialValues={user}
+                                initialValues={doctor}
                             >
                                 {({ handleSubmit, handleChange, values, touched, errors }) => (
                                     <Form

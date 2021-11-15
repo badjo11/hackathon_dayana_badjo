@@ -82,7 +82,7 @@ const Navibar = () => {
     return (
         <Navbar bg="light" expand="lg">
             <Container>
-                <Navbar.Brand href="#home"><img src={logo_img} alt="" /></Navbar.Brand>
+                <Link to='/'><img src={logo_img} alt="" /></Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mx-auto ">

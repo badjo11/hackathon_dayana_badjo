@@ -6,6 +6,7 @@ export const userContext = React.createContext();
 const INIT_STATE = {
     doctors: null,
     user: null,
+    doctor: null,
     failedLogin: null,
 };
 
@@ -19,6 +20,8 @@ const reducer = (state = INIT_STATE, action) => {
             return { ...state, user: action.payload };
         case "GET_USER":
             return { ...state, user: action.payload }
+            case "GET_DOCTOR":
+                return { ...state, doctor: action.payload }
         case "CLEAR_STATE":
             return { ...state, phone: action.payload }
         case "GET_ALL_DOCS":
@@ -96,11 +99,22 @@ const UserContextProvider = (props) => {
             console.log(e)
         }
     }
+    const getDoctor = async(id) =>{
+        try{
+            let response = await axios(APIusers + '/' +id)
+            dispatch({
+                type: "GET_DOCTOR",
+                payload: response.data,
+            })
+        }catch(e){
+            console.log(e);
+        }
+    }
     const editDoctor = async (editedUser, user) => {
         try {
             await axios.patch(APIusers + '/' + user.id, editedUser)
 
-            getUser(user.id)
+            getDoctor(user.id)
             clearState()
         } catch (e) {
             console.log(e)
@@ -173,9 +187,12 @@ const UserContextProvider = (props) => {
                 getUser,
                 clearState,
                 getAllDocs,
+                getDoctor,
                 doctors: state.doctors,
                 user: state.user,
+                doctor: state.doctor,
                 state,
+
             }}
         >
             {props.children}
