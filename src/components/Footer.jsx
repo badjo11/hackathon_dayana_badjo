@@ -16,6 +16,7 @@ const Footer = () => {
                     <p className='para'>Вопросы и ответы</p>
                     <p className='para'>Контакты</p>
                 </div>
+                {/* qwe */}
                 <div className='first_footer_inner'>
                     <strong>Наши Услуги</strong>
                     <p className='para'>Самодиагностика</p>
