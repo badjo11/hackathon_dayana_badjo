@@ -28,12 +28,13 @@
     flex-wrap: wrap;
 }
 
-.btn-dayana {
+.btn-first-session {
     margin-left: 70px;
     background-color: #31B8BF;
     padding: 3px 25px;
     border-radius: 100px;
     color: white;
+    border: none
 }
 
 .second-main-text {

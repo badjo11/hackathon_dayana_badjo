@@ -35,7 +35,7 @@ const MainHeader = () => {
                         <Card.Text style={{ color: 'black', textAlign: 'center' }}>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                         </Card.Text>
-                        <Button className="btn">Получить</Button>
+                        <Button className="btn-first-session">Получить</Button>
                     </Card.Body>
                 </Card>
                 <Card style={{ width: '18rem', boxShadow: '4px 4px 8px 0px rgba(23, 27, 30, 0.63)' }}>
@@ -45,7 +45,7 @@ const MainHeader = () => {
                         <Card.Text style={{ color: 'black', textAlign: 'center' }}>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                         </Card.Text>
-                        <Button className="btn">Пройти</Button>
+                        <Button className="btn-first-session">Пройти</Button>
                     </Card.Body>
                 </Card>
                 <Card style={{ width: '18rem', boxShadow: '4px 4px 8px 0px rgba(23, 27, 30, 0.63)' }}>
@@ -55,7 +55,7 @@ const MainHeader = () => {
                         <Card.Text style={{ color: 'black', textAlign: 'center' }}>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                         </Card.Text>
-                        <Link to='/doctor'><Button className="btn" >Записаться </Button></Link>
+                        <Link to='/doctor'><Button className="btn-first-session" >Записаться </Button></Link>
                     </Card.Body>
                 </Card>
             </div>

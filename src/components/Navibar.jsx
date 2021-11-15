@@ -11,7 +11,7 @@ import { serviceContext } from '../contexts/serviceContext';
 
 const Navibar = () => {
     const { user, logoutUser, setUser } = useContext(userContext);
-    const { countOfServices}= useContext(serviceContext)
+    const { countOfServices } = useContext(serviceContext)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -46,7 +46,7 @@ const Navibar = () => {
                         Signed in as: <Badge bg="secondary">{user.username}</Badge>
                     </Navbar.Text>
                 </Navbar.Collapse>
-                <Button style={{ padding: '0 40px', border: 'none' }} className="me-2" onClick={() => logout()}>
+                <Button style={{ backgroundColor: '#31B8BF', border: 'none', padding: '0 20px', display: 'inline-block', height: '30px', marginTop: '13px' }} onClick={() => logout()}>
                     LogOut
                 </Button>
             </>
@@ -57,7 +57,7 @@ const Navibar = () => {
                 <Button
                     className="me-2 text-white"
                     onClick={handleShowLogin}
-                    style={{ border: 'none', }}
+                    style={{ border: 'none', backgroundColor: '#31B8BF', padding: '0 20px', display: 'inline-block', height: '30px', marginTop: '13px' }}
 
 
                 >
@@ -66,7 +66,7 @@ const Navibar = () => {
                 <Button
                     className="me-2 text-white"
                     onClick={handleShow}
-                    style={{ border: 'none' }}
+                    style={{ border: 'none', backgroundColor: '#31B8BF', padding: '0 20px', display: 'inline-block', height: '30px', marginTop: '13px' }}
                 >
                     Sign Up
                 </Button>
@@ -82,7 +82,7 @@ const Navibar = () => {
     }
     useEffect(() => setuser(struser), [struser]);
 
-// asd
+    // asd
     return (
         <Navbar bg="light" expand="lg">
             <Container>
@@ -95,8 +95,8 @@ const Navibar = () => {
                         <Link to="/service" className='px-4'>Услуги</Link>
                         {doctorRoom}
                         {content}
-                       <Link to='/cart'> <Badge bg="secondary">{countOfServices}<BsFillCartFill/></Badge></Link>
-                        
+                        <Link to='/cart'> <Badge bg="secondary">{countOfServices}<BsFillCartFill /></Badge></Link>
+
                     </Nav>
                     <Nav className='ms-auto'>
                         {button}
