@@ -75,15 +75,21 @@ const ServicePage = () => {
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formBasicEmail1">
                                 <Form.Label>Категория услуги</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Введите категорию услуги"
+                                <Form.Select
+                                    aria-label="Default select example"
                                     name="category"
                                     onChange={handleChange}
                                     isValid={!errors.category && touched.category}
                                     isInvalid={!!errors.category}
                                     value={values.category}
-                                />
+                                >
+                                    <option>Выберите категорию</option>
+                                    <option value="Анализы">Анализы</option>
+                                    <option value="Диагностика">Диагностика</option>
+                                    <option value="Лечение">Лечение</option>
+                                    <option value="Реабилитация">Реабилитация</option>
+                                </Form.Select>
+
                                 <Form.Control.Feedback type="invalid">
                                     {errors.category}
                                 </Form.Control.Feedback>
@@ -103,7 +109,7 @@ const ServicePage = () => {
                                     {errors.price}
                                 </Form.Control.Feedback>
                             </Form.Group>
-                            <Button variant="primary" type="submit">
+                            <Button style={{ border: 'none', marginLeft: '0' }} variant="primary" type="submit">
                                 Отправить
                             </Button>
                         </Form>
@@ -114,9 +120,10 @@ const ServicePage = () => {
     }
     return (
         <div style={{ display: 'flex' }}>
-            <div style={{ width: '15%', backgroundColor: 'wheat' }}>
-                <h3>Filter</h3>
+            <div style={{ width: '15%', backgroundColor: '#31B8BF', color: 'white', textAlign: 'left', paddingTop: '25px', }}>
+                <h3 style={{ textAlign: 'center' }}>Filter</h3>
                 <Form.Group
+
                     className="mb-3"
                     value={brandValue}
                     controlId="formBasicEmail"
@@ -128,7 +135,7 @@ const ServicePage = () => {
                     <Form.Check
                         block='true'
                         label="Анализы"
-                        value='Анализ'
+                        value='Анализы'
                         name="category"
                         type="radio"
                         id="inline-radio-1"
@@ -174,16 +181,16 @@ const ServicePage = () => {
                             currentPosts.map(item => {
                                 return <Card key={item.id} style={{ width: '18rem', border: '1px solid #31B8BF' }}>
                                     <Card.Body>
-                                        <Card.Title>Название услуги: {item.name}</Card.Title>
+                                        <Card.Title style={{ fontWeight: 'bold' }} >Название услуги: {item.name}</Card.Title>
                                         <Card.Subtitle>Категория услуги: {item.category}</Card.Subtitle>
                                         <Card.Text>Цена услуги: {item.price}</Card.Text>
                                         {
-                                            user ? (user.type === 'doctor' ? (<><Link to={'/edit/' + item.id}><Button >Редактировать</Button></Link>
-                                                <Button onClick={() => { deleteService(item.id) }}>Удалить</Button></>) : (<>
+                                            user ? (user.type === 'doctor' ? (<><Link to={'/edit/' + item.id}><Button style={{ marginLeft: '0', marginBottom: '10px', border: 'none' }} >Редактировать</Button></Link>
+                                                <Button style={{ marginLeft: '0', border: 'none' }} onClick={() => { deleteService(item.id) }}>Удалить</Button></>) : (<>
                                                     <Button href="#">Корзина</Button>
                                                 </>)) : (<h2>Loading...</h2>)
                                         }
-{/* sad */}
+                                        {/* sad */}
                                     </Card.Body>
                                 </Card>
                             })

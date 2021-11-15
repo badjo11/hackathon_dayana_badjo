@@ -13,9 +13,9 @@ const SearchDoc = () => {
         if (value.length > 2) {
             setDropDownDiv(<>
 
-                <div style={{ backgroundColor: 'white', color: 'darkblue', width: '100%', fontSize: '20px', height: 'auto', display: 'block' }}>
+                <div style={{ backgroundColor: 'white', color: '#31B8BF', width: '100%', fontSize: '20px', height: 'auto', display: 'block' }}>
                     <h2>
-                        Врачи
+                        Поиск врача
                     </h2>
                     <ul >
                         {
@@ -38,7 +38,7 @@ const SearchDoc = () => {
     return (
         <>
             <InputGroup size="lg" >
-                <FormControl placeholder="пример: имя, специальность" onChange={(e) => { handleChange(e.target.value) }} />
+                <FormControl placeholder="пример: имя врача" onChange={(e) => { handleChange(e.target.value) }} />
                 <InputGroup.Text id="inputGroup-sizing-lg"  >
                     <img src={logo_img} alt="" />
                 </InputGroup.Text>

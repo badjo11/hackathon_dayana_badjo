@@ -13,7 +13,7 @@ const EditPage = () => {
     }, [])
     const schema = yup.object().shape({
         name: yup.string().min(2).max(30).required("Required"),
-        category: yup.string().min(4).max(6).required("Required"),
+        category: yup.string().required("Required"),
         price: yup.string().min(3).max(255).required("Required"),
     })
     const navigate = useNavigate()
@@ -56,15 +56,21 @@ const EditPage = () => {
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formBasicEmail1">
                                     <Form.Label>Категория услуги</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Введите категорию услуги"
+                                    <Form.Select
+                                        aria-label="Default select example"
                                         name="category"
                                         onChange={handleChange}
                                         isValid={!errors.category && touched.category}
                                         isInvalid={!!errors.category}
                                         value={values.category}
-                                    />
+                                    >
+                                        <option>Выберите категорию</option>
+                                        <option value="Анализы">Анализы</option>
+                                        <option value="Диагностика">Диагностика</option>
+                                        <option value="Лечение">Лечение</option>
+                                        <option value="Реабилитация">Реабилитация</option>
+                                    </Form.Select>
+
                                     <Form.Control.Feedback type="invalid">
                                         {errors.category}
                                     </Form.Control.Feedback>
