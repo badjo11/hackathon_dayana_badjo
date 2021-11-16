@@ -17,6 +17,7 @@ const AllDoctorsPage = () => {
                         ))
                     ) : (<h2>Loading</h2>)
                 }
+                {/* asd */}
             </ul>
         </div>
     );
