@@ -10,11 +10,13 @@ import EditPage from './pages/EditPage';
 import MainPage from './pages/MainPage';
 import ServicePage from './pages/ServicePage';
 import OrderPage from './pages/OrderPage';
+import CommentContextProvider from './contexts/commentsContext';
 
 const MyRoutes = () => {
     return (
         <UserContextProvider>
             <ServiceContextProvider >
+                <CommentContextProvider>
                 <BrowserRouter>
                     <Navibar />
                     <Routes>
@@ -27,6 +29,7 @@ const MyRoutes = () => {
                         <Route path='/order' element={<OrderPage />} />
                     </Routes>
                 </BrowserRouter>
+                </CommentContextProvider>
             </ServiceContextProvider>
         </UserContextProvider>
     );

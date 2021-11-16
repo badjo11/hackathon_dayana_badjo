@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { userContext } from '../../contexts/userContext';
+import {commentsContext} from '../../contexts/commentsContext'
 import { Button, Form, Modal } from 'react-bootstrap';
 import * as yup from "yup";
 import { Formik } from "formik";
+import Comment from '../comments/Comment'
 const DoctorRoom = () => {
     const { getUser, user, getDoctor, doctor, editDoctor, deleteUser, logoutUser, clearState } = useContext(userContext)
+    const {getCommentsForRoom} = useContext(commentsContext)
     const [show, setShow] = useState(false);
     useEffect(() => {
         clearState()
@@ -30,7 +33,9 @@ const DoctorRoom = () => {
         getDoctor(params.id);
     }, []);
     const history = useNavigate()
-
+    useEffect(()=>{
+        getCommentsForRoom(params.id)
+    },[])
     return (
         <div className='container1' style={{ backgroundColor: '#F4F4F4' }} >
             {
@@ -71,7 +76,14 @@ const DoctorRoom = () => {
                 user ? (user.type === 'doctor' ? (<><Button style={{ border: 'none', fontSize: '20px', backgroundColor: '#31B8BF', marginLeft: '60px' }} onClick={handleShow}>Редактировать данные</Button>
                     <Button style={{ border: 'none', fontSize: '20px', backgroundColor: '#31B8BF', marginLeft: '10px' }} onClick={handleDelete}>
                         Удалить профиль
-                    </Button></>) : (<Button >Записаться к врачу</Button>)) : (<h2>Loading</h2>)
+                    </Button></>) : (
+                        <>
+                        <Button >Записаться к врачу</Button>
+                        {
+                            doctor ? (<Comment doctor={doctor}/>) : (<h2>Load</h2>)
+                        }
+                    </>
+                    )) : (<h2>Loading</h2>)
 
             }
             <Modal show={show} onHide={handleClose}>
@@ -155,6 +167,7 @@ const DoctorRoom = () => {
                 </Modal.Body>
 
             </Modal>
+            
         </div>
     );
 };
