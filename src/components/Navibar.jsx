@@ -6,12 +6,13 @@ import { userContext } from '../contexts/userContext';
 import logo_img from '../images/logo.svg'
 import LogInModal from './auth/LogInModal';
 import SignUpModal from './auth/SignUpModal';
-import { BsFillCartFill } from "react-icons/bs";
+import { BsFillCartFill, BsHeartFill } from "react-icons/bs";
+
 import { serviceContext } from '../contexts/serviceContext';
 
 const Navibar = () => {
     const { user, logoutUser, setUser } = useContext(userContext);
-    const { countOfServices } = useContext(serviceContext)
+    const { countOfServices, countOfServicesFavorites } = useContext(serviceContext)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -35,8 +36,13 @@ const Navibar = () => {
             doctorRoom = <Link to={'/doctor/' + user.id}>Личный кабинет</Link>
         } else {
 
-            doctorRoom = <Link to='/cart'> <Badge bg="secondary">{countOfServices}<BsFillCartFill /></Badge></Link>
+            doctorRoom = <>
+                <Link to='/cart'> <Badge bg="secondary">{countOfServices}<BsFillCartFill /></Badge></Link>
+                <Link to='/favorites'> <Badge bg="secondary">{countOfServicesFavorites}<BsHeartFill /></Badge></Link>
+
+            </>
         }
+
         let struser = JSON.stringify(user);
         localStorage.setItem("user", struser);
         button = (

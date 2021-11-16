@@ -10,6 +10,7 @@ import EditPage from './pages/EditPage';
 import MainPage from './pages/MainPage';
 import ServicePage from './pages/ServicePage';
 import OrderPage from './pages/OrderPage';
+import Favorites from './pages/Favorites';
 
 const MyRoutes = () => {
     return (
@@ -25,6 +26,7 @@ const MyRoutes = () => {
                         <Route path="/cart" element={<CartPage />} />
                         <Route path="/doctor" element={<AllDoctorsPage />} />
                         <Route path='/order' element={<OrderPage />} />
+                        <Route path='/favorites' element={<Favorites />} />
                     </Routes>
                 </BrowserRouter>
             </ServiceContextProvider>
