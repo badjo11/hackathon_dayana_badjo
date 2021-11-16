@@ -33,9 +33,9 @@ const Navibar = () => {
 
         if (user.type === 'doctor') {
             doctorRoom = <Link to={'/doctor/' + user.id}>Личный кабинет</Link>
-        }else{
-            
-            doctorRoom = <Link to='/cart'> <Badge bg="secondary">{countOfServices}<BsFillCartFill/></Badge></Link>
+        } else {
+
+            doctorRoom = <Link to='/cart'> <Badge bg="secondary">{countOfServices}<BsFillCartFill /></Badge></Link>
         }
         let struser = JSON.stringify(user);
         localStorage.setItem("user", struser);

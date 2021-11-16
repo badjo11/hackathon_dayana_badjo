@@ -106,7 +106,7 @@ const ServicePage = () => {
                                     {errors.price}
                                 </Form.Control.Feedback>
                             </Form.Group>
-                            <Button style={{ border: 'none', marginLeft: '0' }} variant="primary" type="submit">
+                            <Button style={{ border: 'none', marginLeft: '0', backgroundColor: '#1C374C' }} variant="primary" type="submit">
                                 Отправить
                             </Button>
                         </Form>
@@ -182,8 +182,8 @@ const ServicePage = () => {
                                         <Card.Subtitle>Категория услуги: {item.category}</Card.Subtitle>
                                         <Card.Text>Цена услуги: {item.price}</Card.Text>
                                         {
-                                            user ? ((user.type === 'doctor' && user) ? (<><Link to={'/edit/' + item.id}><Button style={{ marginLeft: '0', marginBottom: '10px', border: 'none' }} >Редактировать</Button></Link>
-                                                <Button style={{ marginLeft: '0', border: 'none' }} onClick={() => { deleteService(item.id) }}>Удалить</Button></>) : (<>
+                                            user ? ((user.type === 'doctor' && user) ? (<><Link to={'/edit/' + item.id}><Button style={{ marginLeft: '0', border: 'none', backgroundColor: '#31B8BF' }} >Редактировать</Button></Link>
+                                                <Button style={{ marginLeft: '5px', border: 'none', backgroundColor: '#31B8BF' }} onClick={() => { deleteService(item.id) }}>Удалить</Button></>) : (<>
                                                     <Button variant={checkServiceInCart(item.id) ? 'danger' : 'primary'} onClick={() => addAndDeleteServiceInCart(item)}>Корзина</Button>
                                                 </>)) : (<></>)
                                         }

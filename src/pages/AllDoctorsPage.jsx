@@ -8,7 +8,7 @@ const AllDoctorsPage = () => {
     }, [])
 
     return (
-        <div>
+        <div style={{ textAlign: 'center', fontSize: '50px' }}>
             <ul>
                 {
                     doctors ? (

@@ -68,8 +68,8 @@ const DoctorRoom = () => {
                 )
             }
             {
-                user ? (user.type === 'doctor' ? (<><Button style={{ border: 'none', fontSize: '20px' }} onClick={handleShow}>Редактировать данные</Button>
-                    <Button style={{ border: 'none', fontSize: '20px', }} onClick={handleDelete}>
+                user ? (user.type === 'doctor' ? (<><Button style={{ border: 'none', fontSize: '20px', backgroundColor: '#31B8BF', marginLeft: '60px' }} onClick={handleShow}>Редактировать данные</Button>
+                    <Button style={{ border: 'none', fontSize: '20px', backgroundColor: '#31B8BF', marginLeft: '10px' }} onClick={handleDelete}>
                         Удалить профиль
                     </Button></>) : (<Button >Записаться к врачу</Button>)) : (<h2>Loading</h2>)
 
