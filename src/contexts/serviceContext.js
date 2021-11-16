@@ -9,6 +9,8 @@ const INIT_STATE = {
     serviceToEdit: null,
     countOfServices: JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')).services.length : 0,
     cart: 0,
+    countOfServicesFavorites: JSON.parse(localStorage.getItem('favorites')) ? JSON.parse(localStorage.getItem('favorites')).services.length : 0,
+    favorites: 0,
 }
 const reducer = (state = INIT_STATE, action) => {
     switch (action.type) {
@@ -24,6 +26,12 @@ const reducer = (state = INIT_STATE, action) => {
             return { ...state, cart: action.payload }
         case "CLEAR_COUNT":
             return { ...state, countOfServices: action.payload }
+        case "ADD_AND_DELETE_SERVICE_IN_FAVORITES":
+            return { ...state, countOfServicesFavorites: action.payload }
+        case 'GET_ALL_FAVORITES':
+            return { ...state, favorites: action.payload }
+        case "CLEAR_COUNT_FAVORITES":
+            return { ...state, countOfServicesFavorites: action.payload }
         default:
             return state
     }
@@ -123,6 +131,7 @@ const ServiceContextProvider = (props) => {
     const handlePage = (newPage) => {
         setCurrentPage(newPage)
     }
+
     const addAndDeleteServiceInCart = (service) => {
         let cart = JSON.parse(localStorage.getItem('cart'))
         if (!cart) {
@@ -148,6 +157,7 @@ const ServiceContextProvider = (props) => {
             cart.services = cart.services.filter(item => {
                 return item.service.id !== service.id
             })
+
         }
         cart.totalPrice = calcTotalPrice(cart)
         localStorage.setItem('cart', JSON.stringify(cart))
@@ -202,6 +212,82 @@ const ServiceContextProvider = (props) => {
             payload: null
         })
     }
+    // конец 
+
+    const addAndDeleteServiceInFavorites = (service) => {
+        let favorites = JSON.parse(localStorage.getItem('favorites'))
+        if (!favorites) {
+            favorites = {
+                services: [],
+            }
+        } else {
+
+        }
+        let product = {
+            service: service,
+            count: 1,
+        }
+        let checkArr = favorites.services.filter(item => {
+            return item.service.id === service.id
+        })
+        if (checkArr.length === 0) {
+            favorites.services.push(product)
+        } else {
+            favorites.services = favorites.services.filter(item => {
+                return item.service.id !== service.id
+            })
+        }
+        localStorage.setItem('favorites', JSON.stringify(favorites))
+        let action = {
+            type: "ADD_AND_DELETE_SERVICE_IN_FAVORITES",
+            payload: favorites.services.length,
+        }
+        dispatch(action)
+    }
+
+    const checkServiceInFavorites = (id) => {
+        let favorites = JSON.parse(localStorage.getItem('favorites'))
+        if (!favorites) {
+            favorites = {
+                services: [],
+                totalPrice: 0,
+            }
+        }
+        let checkArr = favorites.services.filter(item => {
+            return item.service.id === id
+        })
+        if (checkArr.length === 0) {
+            return false
+        } else {
+            return true
+        }
+    }
+
+    const changeCountServiceFavorites = (count, id) => {
+        let favorites = JSON.parse(localStorage.getItem('favorites'))
+        favorites.services = favorites.services.map(item => {
+            if (item.service.id === id) {
+                item.count = count
+            }
+            return item
+        })
+        localStorage.setItem('favorites', JSON.stringify(favorites))
+        getAllFavorites()
+    }
+
+    const getAllFavorites = () => {
+        let favorites = JSON.parse(localStorage.getItem('favorites'))
+        dispatch({
+            type: 'GET_ALL_FAVORITES',
+            payload: favorites,
+        })
+    }
+    const clearCountOfServicesFavorites = () => {
+        dispatch({
+            type: "CLEAR_COUNT_FAVORITES",
+            payload: null
+        })
+    }
     return (<serviceContext.Provider value={
         {
             addServices: addServices,
@@ -215,6 +301,11 @@ const ServiceContextProvider = (props) => {
             checkServiceInCart: checkServiceInCart,
             getAll: getAll,
             clearCountOfServices: clearCountOfServices,
+            addAndDeleteServiceInFavorites: addAndDeleteServiceInFavorites,
+            changeCountServiceFavorites: changeCountServiceFavorites,
+            checkServiceInFavorites: checkServiceInFavorites,
+            getAllFavorites: getAllFavorites,
+            clearCountOfServicesFavorites: clearCountOfServicesFavorites,
             serviceToEdit: state.serviceToEdit,
             services: state.services,
             currentPosts: currentPosts,
@@ -222,7 +313,9 @@ const ServiceContextProvider = (props) => {
             postsPerPage: postsPerPage,
             currentPage: currentPage,
             cart: state.cart,
+            favorites: state.favorites,
             countOfServices: state.countOfServices,
+            countOfServicesFavorites: state.countOfServicesFavorites
         }
     } > {props.children} </serviceContext.Provider>)
 }
