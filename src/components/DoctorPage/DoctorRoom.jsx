@@ -84,14 +84,14 @@ const DoctorRoom = () => {
                         <Button >Записаться к врачу</Button>
                     </>
                 )) : (<h2>Loading</h2>)
-				
-				
-					
-				
+
+
+
+
             }
-			{
-				doctor ? (<Comment doctor={doctor} />) : (<h2>Load</h2>)
-			}
+            {
+                doctor ? (<Comment doctor={doctor} />) : (<h2>Load</h2>)
+            }
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Изменить данные</Modal.Title>

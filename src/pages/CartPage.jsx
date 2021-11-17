@@ -15,13 +15,13 @@ const CartPage = () => {
                 cart ? (
                     cart.services.length ? (
                         <>
-                            <Table striped bordered hover>
+                            <Table striped bordered hover style={{ fontSize: '12px' }} >
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th align="right">Category</th>
-                                        <th align="right">Count</th>
-                                        <th align="right">Summa</th>
+                                        <th>Услуга</th>
+                                        <th align="right">Категория</th>
+                                        <th align="right">Количество</th>
+                                        <th align="right">Сумма</th>
                                     </tr>
                                 </thead>
 
@@ -36,7 +36,7 @@ const CartPage = () => {
                                             </td>
                                             <td align="right">{item.service.category}</td>
                                             <td align="right">
-                                                <input type="number" onChange={(e) => changeCountService(e.target.value, item.service.id)} value={item.count} />
+                                                <input type="number" onChange={(e) => changeCountService(e.target.value, item.service.id)} value={item.count} style={{ width: '40px' }} />
                                             </td>
                                             <td align="right">{item.subPrice}</td>
                                         </tr>

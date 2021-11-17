@@ -60,7 +60,7 @@ const ServiceContextProvider = (props) => {
         try {
             let filter = window.location.search
             const response = await axios(`${APIservices}/${filter}`)
-            console.log(filter)
+
             let action = {
                 type: "GET_SERVICES",
                 payload: response.data
@@ -209,7 +209,7 @@ const ServiceContextProvider = (props) => {
     const clearCountOfServices = () => {
         dispatch({
             type: "CLEAR_COUNT",
-            payload: null
+            payload: 0
         })
     }
     // конец 
@@ -300,6 +300,7 @@ const ServiceContextProvider = (props) => {
             changeCountService: changeCountService,
             checkServiceInCart: checkServiceInCart,
             getAll: getAll,
+            setCurrentPage: setCurrentPage,
             clearCountOfServices: clearCountOfServices,
             addAndDeleteServiceInFavorites: addAndDeleteServiceInFavorites,
             changeCountServiceFavorites: changeCountServiceFavorites,

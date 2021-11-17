@@ -33,7 +33,7 @@ const Navibar = () => {
     if (user) {
 
         if (user.type === 'doctor') {
-            doctorRoom = <Link to={'/doctor/' + user.id}>Личный кабинет</Link>
+            doctorRoom = <Link style={{ textDecoration: 'none' }} to={'/doctor/' + user.id}>Личный кабинет</Link>
         } else {
 
             doctorRoom = <>
@@ -98,10 +98,10 @@ const Navibar = () => {
                 <Link to='/'><img src={logo_img} alt="" /></Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mx-auto ">
-                        <Link to="/" className='px-4'>Главная</Link>
-                        <Link to="/link" className='px-4'>Пациентам</Link>
-                        <Link to="/service" className='px-4'>Услуги</Link>
+                    <Nav className="mx-auto" >
+                        <Link style={{ textDecoration: 'none' }} to="/" className='px-4'>Главная</Link>
+                        <Link style={{ textDecoration: 'none' }} to="/doctor" className='px-4'>Врачи</Link>
+                        <Link style={{ textDecoration: 'none' }} to="/service" className='px-4'>Услуги</Link>
                         {doctorRoom}
                         {content}
 

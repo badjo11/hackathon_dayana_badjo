@@ -3,7 +3,7 @@ import * as yup from 'yup'
 import { Formik } from 'formik';
 import { serviceContext } from '../contexts/serviceContext';
 import { Form, Button, Modal } from 'react-bootstrap';
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import ReactCardFlip from 'react-card-flip';
 
 
@@ -36,10 +36,7 @@ const OrderPage = () => {
             .max(999, "Максимальное количество символов 3")
             .required("Данное поле обязательно для заполнения"),
     })
-    function formatDate(date) {
-        console.log(new Date(date).toLocaleDateString())
-        return new Date(date).toLocaleDateString()
-    }
+
 
 
     const schema2 = yup.object({
@@ -60,11 +57,9 @@ const OrderPage = () => {
             .required("Данное поле обязательно для заполнения"),
     })
 
-    const { addServices, cart, getAll, clearCountOfServices } = useContext(serviceContext)
+    const { cart, getAll, clearCountOfServices } = useContext(serviceContext)
     const navigate = useNavigate()
-    const handleSubmit = (services) => {
-        navigate("/order")
-    }
+
     const [isFlipped, setIsFlipped] = useState(false)
     const handleClick = () => {
         setIsFlipped(!isFlipped)
@@ -81,7 +76,7 @@ const OrderPage = () => {
                     <h2 style={{ width: '50%', textAlign: 'center', color: '#31B8BF', margin: '0 auto' }}>Форма заказа</h2>
                     <Formik
                         validationSchema={schema2}
-                        onSubmit={handleSubmit}
+                        onSubmit={handleClick}
                         initialValues={{
                             fullname: "",
                             data: "",
@@ -137,7 +132,7 @@ const OrderPage = () => {
                                         {errors.time}
                                     </Form.Control.Feedback>
                                 </Form.Group>
-                                <Button variant="primary" onClick={handleClick} type="submit">
+                                <Button variant="primary" type="submit">
                                     Подтвердить
                                 </Button>
                             </Form>
@@ -151,7 +146,7 @@ const OrderPage = () => {
                     <h2 style={{ width: '50%', textAlign: 'center', color: '#31B8BF', margin: '0 auto' }}>Форма оплаты</h2>
                     <Formik
                         validationSchema={schema}
-                        onSubmit={handleSubmit}
+                        onSubmit={handleShow}
                         initialValues={{
                             number: "",
                             month: "",
@@ -167,6 +162,7 @@ const OrderPage = () => {
                                     <Form.Label>Номер вашей карты</Form.Label>
                                     <Form.Control
                                         type="text"
+                                        maxLength='16'
                                         placeholder="Введите номер карты"
                                         name="number"
                                         onChange={handleChange}
@@ -214,6 +210,7 @@ const OrderPage = () => {
                                         type="password"
                                         placeholder="Введите CVV код"
                                         name="cvv"
+                                        maxLength='3'
                                         onChange={handleChange}
                                         isValid={!errors.cvv && touched.cvv}
                                         isInvalid={!!errors.cvv}
@@ -228,9 +225,7 @@ const OrderPage = () => {
                                         cart ? cart.totalPrice : 0
                                     }
                                 </p>
-                                <Button variant="primary" type="submit" onClick={() => {
-                                    handleShow()
-                                }}>
+                                <Button variant="primary" type="submit">
                                     Оплатить
                                 </Button>
                             </Form>
@@ -246,14 +241,15 @@ const OrderPage = () => {
                 </Modal.Header>
                 <Modal.Body>Спасибо, что выбрали нашу клинику!</Modal.Body>
                 <Modal.Footer>
-                    <Link to='/'><Button variant="primary" onClick={() => {
+                    <Button variant="primary" type='submit' onClick={() => {
                         handleClose()
                         localStorage.removeItem('cart');
                         clearCountOfServices()
+                        navigate('/')
                     }}>
                         Вернуться в главное меню
                     </Button>
-                    </Link>
+
                 </Modal.Footer>
             </Modal>
         </div >

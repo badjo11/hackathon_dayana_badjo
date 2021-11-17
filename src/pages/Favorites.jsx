@@ -1,10 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-import { Table, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Table } from 'react-bootstrap';
 import { serviceContext } from '../contexts/serviceContext';
 
 const Favorites = () => {
-    const { changeCountServiceFavorites, getAllFavorites, favorites } = useContext(serviceContext)
+    const { getAllFavorites, favorites } = useContext(serviceContext)
     useEffect(() => {
         getAllFavorites()
     }, [])
@@ -13,14 +12,11 @@ const Favorites = () => {
             <h2 style={{ color: '#31B8BF', textAlign: 'center', marginTop: '25px' }} >Избранное</h2>
             {
                 favorites ? (
-
-                    <Table striped bordered hover>
+                    <Table >
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th align="right">Category</th>
-                                {/* <th align="right">Count</th> */}
-                                {/* <th align="right">Summa</th> */}
+                                <th>Услуга</th>
+                                <th align="right">Категория</th>
                             </tr>
                         </thead>
 
@@ -35,9 +31,7 @@ const Favorites = () => {
                                     </td>
                                     <td align="right">{item.service.category}</td>
                                     <td align="right">
-                                        {/* <input type="number" onChange={(e) => changeCountServiceFavorites(e.target.value, item.service.id)} value={item.count} /> */}
                                     </td>
-                                    {/* <td align="right">{item.subPrice}</td> */}
                                 </tr>
                             ))}
                         </tbody>

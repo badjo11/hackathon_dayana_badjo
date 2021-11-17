@@ -1,4 +1,4 @@
-import { Form, Button, Card, Modal } from 'react-bootstrap';
+import { Form, Button, Card } from 'react-bootstrap';
 import React, { useContext, useEffect, useState } from 'react';
 import * as yup from 'yup'
 import { Formik } from 'formik';
@@ -8,7 +8,7 @@ import Pagination from '../components/Pagination';
 
 const ServicePage = () => {
 
-    const { addServices, getServices, deleteService, services, currentPosts, setCurrentPage, addAndDeleteServiceInCart, checkServiceInCart, addAndDeleteServiceInFavorites, checkServiceInFavorites } = useContext(serviceContext)
+    const { addServices, getServices, deleteService, currentPosts, setCurrentPage, addAndDeleteServiceInCart, checkServiceInCart, addAndDeleteServiceInFavorites, checkServiceInFavorites } = useContext(serviceContext)
     const schema = yup.object().shape({
         name: yup.string().min(2).max(30).required("Required"),
         category: yup.string().required("Required"),
@@ -19,7 +19,7 @@ const ServicePage = () => {
     }, [])
     const navigate = useNavigate()
     let addForm
-    let buttons
+
     let object = new URLSearchParams(window.location.search)
     const [brandValue, setBrandValue] = useState('')
     function filterPhones(key, value) {
@@ -116,8 +116,8 @@ const ServicePage = () => {
         }
     }
     return (
-        <div style={{ display: 'flex' }}>
-            <div style={{ width: '15%', backgroundColor: '#31B8BF', color: 'white', textAlign: 'left', paddingTop: '25px', }}>
+        <div className='filter' >
+            <div className='in_filter' >
                 <h3 style={{ textAlign: 'center' }}>Filter</h3>
                 <Form.Group
 
@@ -126,7 +126,7 @@ const ServicePage = () => {
                     controlId="formBasicEmail"
                     onChange={(e) => {
                         filterPhones('category', e.target.value)
-                        // setCurrentPage(1)
+                        setCurrentPage(1)
                     }}
                 >
                     <Form.Check
