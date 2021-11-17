@@ -10,70 +10,69 @@ const INIT_STATE = {
 const reducer = (state = INIT_STATE, action) => {
     switch (action.type) {
         case "GET_COMMENTS_FOR_ROOM":
-            return {...state, comments: action.payload }
+            return { ...state, comments: action.payload }
         case "GET_COMMENTS_TO_EDIT":
-            return {...state, commentToEdit: action.payload }
+            return { ...state, commentToEdit: action.payload }
         default:
             return state
     }
 }
 
 const CommentContextProvider = (props) => {
-        const [state, dispatch] = useReducer(reducer, INIT_STATE)
+    const [state, dispatch] = useReducer(reducer, INIT_STATE)
 
 
+    // ! CREATE 
 
+    const addComments = async (text, owner, doctorId, createdAt,
+        createdAtMs) => {
 
-        // ! CREATE 
-
-        const addComments = async(text, owner, doctorId, createdAt,
-            createdAtMs) => {
-
-            try {
-                let comment = {
-                    text,
-                    owner,
-                    doctorId,
-                    createdAt,
-                    createdAtMs,
-                }
-                const response = await axios.post(APIcomments, comment)
-                getCommentsForRoom(doctorId)
-            } catch (e) {
-                console.log(e)
+        try {
+            let comment = {
+                text,
+                owner,
+                doctorId,
+                createdAt,
+                createdAtMs,
             }
+            const response = await axios.post(APIcomments, comment)
+            getCommentsForRoom(doctorId)
+        } catch (e) {
+            console.log(e)
         }
+    }
 
-        // ! READ  
+    // ! READ  
 
-        const getCommentsForRoom = async(doctorId) => {
-            try {
-                const response = await axios(APIcomments + '?doctorId=' + doctorId)
-                let action = {
-                    type: "GET_COMMENTS_FOR_ROOM",
-                    payload: response.data
-                }
-                dispatch(action)
-            } catch (e) {
-                console.log(e)
+    const getCommentsForRoom = async (doctorId) => {
+        try {
+            const response = await axios(APIcomments + '?doctorId=' + doctorId)
+            let action = {
+                type: "GET_COMMENTS_FOR_ROOM",
+                payload: response.data
             }
+            dispatch(action)
+        } catch (e) {
+            console.log(e)
         }
+    }
 
-        // ! UPDATE  
+    // ! UPDATE  
 
-        const getCommentToEdit = async(id) => {
-            try {
-                const response = await axios(` 
+    const getCommentToEdit = async (id) => {
+        try {
+            const response = await axios(` 
                 ${APIcomments}/${id}`)
-                let action = {
-                    type: "GET_COMMENTS_TO_EDIT",
-                    payload: response.data,
-                }
-                dispatch(action)
-            } catch (e) {
-                console.log(e)
+            let action = {
+                type: "GET_COMMENTS_TO_EDIT",
+                payload: response.data,
             }
+            dispatch(action)
+        } catch (e) {
+            console.log(e)
         }
+    }
+
 
         const saveEditedComment = async(editedComment, id) => {
             try {
@@ -84,32 +83,35 @@ const CommentContextProvider = (props) => {
             } catch (e) {
                 console.log(e)
             }
+
+    }
+
+
+    const deleteComment = async (comment) => {
+        try {
+            await axios.delete(`${APIcomments}/${comment.id}`)
+            getCommentsForRoom(comment.doctorId)
+        } catch (e) {
+            console.log(e);
         }
+    }
 
+      
 
-        const deleteComment = async(comment) => {
-            try {
-                await axios.delete(`${APIcomments}/${comment.id}`)
-                getCommentsForRoom(comment.doctorId)
-            } catch (e) {
-                console.log(e);
-            }
+    return (<commentsContext.Provider value={
+        {
+            addComments,
+            getCommentsForRoom,
+            getCommentToEdit,
+            deleteComment,
+            saveEditedComment,
+            comments: state.comments,
+            commentToEdit: state.commentToEdit,
+            state,
+
         }
+    } > {props.children} </commentsContext.Provider>)
+}
 
 
-        return ( <commentsContext.Provider value = {
-                {
-                    addComments,
-                    getCommentsForRoom,
-                    getCommentToEdit,
-                    deleteComment,
-                    saveEditedComment,
-                    comments: state.comments,
-                    commentToEdit: state.commentToEdit,
-                    state,
-                }
-            } > { props.children } </commentsContext.Provider>)
-        }
-
-
-        export default CommentContextProvider;
+export default CommentContextProvider;
