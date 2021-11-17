@@ -3,7 +3,6 @@ import { Rating } from 'react-simple-star-rating'
 
 const Feedback = (props) => {
     const [rating, setRating] = useState(0) // initial rating value
-    console.log(props.doctor)
     // Catch Rating value
     const handleRating = (rate) => {
         setRating(rate)
