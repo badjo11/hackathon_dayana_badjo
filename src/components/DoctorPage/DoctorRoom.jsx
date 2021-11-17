@@ -8,7 +8,7 @@ import { Formik } from "formik";
 import Comment from '../comments/Comment'
 import Feedback from '../Feedbacks/Feedback'
 const DoctorRoom = () => {
-    const { getUser, user, getDoctor, doctor, editDoctor, deleteUser, logoutUser, clearState } = useContext(userContext)
+    const { user, getDoctor, doctor, editDoctor, deleteUser, logoutUser, clearState } = useContext(userContext)
     const { getCommentsForRoom } = useContext(commentsContext)
     const [show, setShow] = useState(false);
     useEffect(() => {

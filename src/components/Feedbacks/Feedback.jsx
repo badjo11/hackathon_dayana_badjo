@@ -1,17 +1,63 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Rating } from 'react-simple-star-rating'
+import { feedbackContext } from '../../contexts/feedbackContext';
 
 const Feedback = (props) => {
     const [rating, setRating] = useState(0) // initial rating value
-    // Catch Rating value
+    const { getFeedbacks, feedbacks, addFeedback, getFeedbacksToEdit, feedbacksToEdit, saveEditedFeedbacks } = useContext(feedbackContext)
+    useEffect(() => {
+        getFeedbacks(props.doctor.id)
+    }, [])
+
+    let user = JSON.parse(localStorage.getItem('user'))
+    let avgRate = 0
+    feedbacks ? (feedbacks.forEach(element => {
+    })
+    ) : (<></>)
+    let idFeedTemp, checkFeed, myRate
+    let count = 0
+    feedbacks ? (avgRate /= feedbacks.length) : (<></>)
+    if (feedbacks) {
+        let temp = feedbacks.map(item => {
+            if (item.doctorId === props.doctor.id && item.owner === user.username) {
+                idFeedTemp = item.id
+                checkFeed = true
+                myRate = item.rate
+            }
+            if (item.doctorId === props.doctor.id) {
+                count++
+                avgRate += item.rate
+            }
+            return false
+        })
+    }
+    avgRate /= count
+
     const handleRating = (rate) => {
         setRating(rate)
-        console.log(rate)
-        // Some logic
+        if (checkFeed) {
+            let editRate = {
+                owner: user.username,
+                doctorId: props.doctor.id,
+                rate: rate,
+                id: idFeedTemp,
+            }
+            saveEditedFeedbacks(editRate)
+        } else {
+            addFeedback(user.username, props.doctor.id, rate)
+        }
     }
+
     return (
         <div>
-            <Rating onClick={handleRating} ratingValue={rating} /* Rating Props */ />
+            {
+                user.type === 'pacient' ? (
+                    <Rating onClick={handleRating} ratingValue={myRate} /* Rating Props */ />
+                ) : (
+                    <></>
+                )
+            }
+            <p style={{ color: '#9E9E9E', justifyContent: 'space-between', }}>Рейтинг врача: ({(Math.round(avgRate * 10) / 10)}), количество отзывов ({feedbacks ? count : 0}) </p>
         </div>
     );
 };
