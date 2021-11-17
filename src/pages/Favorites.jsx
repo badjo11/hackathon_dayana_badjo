@@ -36,7 +36,7 @@ const Favorites = () => {
                             ))}
                         </tbody>
                     </Table>
-
+                    // qwe
 
                 ) : (
                     <h2 style={{ color: '#1C374C', textAlign: 'center', marginTop: '25px' }}>Вы еще не добавили услуги в избранное</h2>
