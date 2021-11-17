@@ -10,30 +10,28 @@ import EditPage from './pages/EditPage';
 import MainPage from './pages/MainPage';
 import ServicePage from './pages/ServicePage';
 import OrderPage from './pages/OrderPage';
-<<<<<<< HEAD
 import CommentContextProvider from './contexts/commentsContext';
-=======
 import Favorites from './pages/Favorites';
->>>>>>> origin/dayana9
+
 
 const MyRoutes = () => {
     return (
         <UserContextProvider>
             <ServiceContextProvider >
                 <CommentContextProvider>
-                <BrowserRouter>
-                    <Navibar />
-                    <Routes>
-                        <Route path='/' element={<MainPage />} />
-                        <Route path='/doctor/:id' element={<DoctorPage />} />
-                        <Route path='/service' element={<ServicePage />} />
-                        <Route path="/edit/:id" element={<EditPage />} />
-                        <Route path="/cart" element={<CartPage />} />
-                        <Route path="/doctor" element={<AllDoctorsPage />} />
-                        <Route path='/order' element={<OrderPage />} />
-                        <Route path='/favorites' element={<Favorites />} />
-                    </Routes>
-                </BrowserRouter>
+                    <BrowserRouter>
+                        <Navibar />
+                        <Routes>
+                            <Route path='/' element={<MainPage />} />
+                            <Route path='/doctor/:id' element={<DoctorPage />} />
+                            <Route path='/service' element={<ServicePage />} />
+                            <Route path="/edit/:id" element={<EditPage />} />
+                            <Route path="/cart" element={<CartPage />} />
+                            <Route path="/doctor" element={<AllDoctorsPage />} />
+                            <Route path='/order' element={<OrderPage />} />
+                            <Route path='/favorites' element={<Favorites />} />
+                        </Routes>
+                    </BrowserRouter>
                 </CommentContextProvider>
             </ServiceContextProvider>
         </UserContextProvider>

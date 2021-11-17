@@ -37,7 +37,7 @@ const Navibar = () => {
         } else {
 
             doctorRoom = <>
-                <Link to='/cart'> <Badge bg="secondary">{countOfServices}<BsFillCartFill /></Badge></Link>
+                <Link style={{ marginRight: '10px' }} to='/cart'> <Badge bg="secondary">{countOfServices}<BsFillCartFill /></Badge></Link>
                 <Link to='/favorites'> <Badge bg="secondary">{countOfServicesFavorites}<BsHeartFill /></Badge></Link>
 
             </>
