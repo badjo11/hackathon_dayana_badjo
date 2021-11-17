@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { FormControl, InputGroup, Button, Card } from 'react-bootstrap';
 import { timeSince } from '../../config/calcTimeLeft';
 import { commentsContext } from '../../contexts/commentsContext';
-
+import CommentBody from './CommentBody';
 const Comment = (props) => {
     const { addComments, getCommentsForRoom, commentToEdit, getCommentToEdit, saveEditedComment, deleteComment, comments } = useContext(commentsContext)
     const [comment, setComment] = useState('')
@@ -26,12 +26,37 @@ const Comment = (props) => {
         setComment('')
     }
     let commenting
+	const [bool, setBool] = useState(false)
+	const [editComm, setEditComm] = useState('')
+	function handleChangeEdit(e){
+		setEditComm(e.target.value)
+	}
+	function saveComment(item){
+		saveEditedComment(editComm, item.id)
+		setBool(false)
+	}
     function handleEdit(item) {
+		setBool(true)
+		commenting = <><InputGroup className="mb-3 createComment">
+		<FormControl
+			rows={2}
+			as="textarea"
+			placeholder="Оставьте отзыв о враче"
+			maxLength="140"
+			onChange={handleChangeEdit}
+			value={comment}
+		/>
+		<Button style={{ backgroundColor: '#31B8BF', border: 'none' }} onClick={creatingComment}>
+			Отправить
+		</Button>
+	</InputGroup><Button onClick={()=> saveComment(item)}>Сохранить</Button></>
         getCommentToEdit(item.id)
     }
     return (
         <>
-            <div className='mt-4 container'>
+			{
+				user.type === 'pacient' ? (
+					<div className='mt-4 container'>
                 <InputGroup className="mb-3 createComment">
                     <FormControl
                         rows={2}
@@ -47,28 +72,15 @@ const Comment = (props) => {
                 </InputGroup>
 
             </div>
+				) : (
+					<></>
+				)
+			}
+            
             <div className="mt-4 container bg-secondary">
                 {
                     comments ? (comments.sort((a, b) => b.createdAtMs - a.createdAtMs).map(item => (
-                        <Card key={item.id} className='mt-2'>
-                            <Card.Header><span style={{ fontWeight: 'bold', color: '#979797' }}>{item.owner}</span> <span> {item.createdAt.slice(0, 10)}, {' '}
-                                {timeSince(item.createdAtMs)} назад </span>
-                            </Card.Header>
-                            <Card.Body>
-                                <Card.Title>
-                                    {item.text}
-                                </Card.Title>
-                                {
-                                    user.username === item.owner ? (
-                                        <>
-                                            <small onClick={() => handleDelete(item)} style={{ color: 'red', cursor: 'pointer' }}>Удалить</small>
-                                            <small onClick={() => handleEdit(item)} style={{ marginLeft: '5px', color: 'darkgreen', cursor: 'pointer' }}>Изменить</small>
-                                        </>
-                                    ) : (<></>)
-                                }
-
-                            </Card.Body>
-                        </Card>
+                        <CommentBody key={item.id} item={item} doctor={props.doctor}/>
                     ))) : (<h2>Loading...</h2>)
                 }
 

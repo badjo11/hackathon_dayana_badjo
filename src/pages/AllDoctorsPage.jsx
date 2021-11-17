@@ -13,7 +13,7 @@ const AllDoctorsPage = () => {
                 {
                     doctors ? (
                         doctors.map(item => (
-                            <Link to={'/doctor/' + item.id}><li key={item.id}>{item.username}</li></Link>
+                            <Link key={item.id} to={'/doctor/' + item.id}><li >{item.username}</li></Link>
                         ))
                     ) : (<h2>Loading</h2>)
                 }
