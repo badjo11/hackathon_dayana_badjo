@@ -3,7 +3,7 @@ import { Rating } from 'react-simple-star-rating'
 import { feedbackContext } from '../../contexts/feedbackContext';
 
 const Feedback = (props) => {
-    const [rating, setRating] = useState(0) // initial rating value
+    const [rating, setRating] = useState(0)
     const { getFeedbacks, feedbacks, addFeedback, getFeedbacksToEdit, feedbacksToEdit, saveEditedFeedbacks } = useContext(feedbackContext)
     useEffect(() => {
         getFeedbacks(props.doctor.id)
@@ -17,8 +17,9 @@ const Feedback = (props) => {
     let idFeedTemp, checkFeed, myRate
     let count = 0
     feedbacks ? (avgRate /= feedbacks.length) : (<></>)
+
     if (feedbacks) {
-        let temp = feedbacks.map(item => {
+        feedbacks.forEach(item => {
             if (item.doctorId === props.doctor.id && item.owner === user.username) {
                 idFeedTemp = item.id
                 checkFeed = true
@@ -28,13 +29,12 @@ const Feedback = (props) => {
                 count++
                 avgRate += item.rate
             }
-            return false
         })
     }
     avgRate /= count
-	if(count === 0){
-		avgRate = 0
-	}
+    if (count === 0) {
+        avgRate = 0
+    }
     const handleRating = (rate) => {
         setRating(rate)
         if (checkFeed) {

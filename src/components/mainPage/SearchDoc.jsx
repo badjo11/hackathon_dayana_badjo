@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { FormControl, InputGroup } from 'react-bootstrap';
 import { userContext } from '../../contexts/userContext';
 import logo_img from '../../images/search.svg'
+import { Link } from 'react-router-dom'
 
 const SearchDoc = () => {
     const { getAllDocs, doctors } = useContext(userContext)
@@ -22,8 +23,8 @@ const SearchDoc = () => {
                             doctors.map(item => {
                                 // console.log(item)
                                 let res = new RegExp(value)
-                                if (item.username.match(res)) {
-                                    return <li style={{ listStyleType: 'doted', color: '#0d4e97', textAlign: 'left' }} key={item.id}>{item.username}</li>
+                                if (item.username.toLowerCase().match(res)) {
+                                    return <Link to={'/doctor/' + item.id}><li style={{ listStyleType: 'doted', color: '#0d4e97', textAlign: 'left' }} >{item.username}</li></Link>
                                 }
                             })
                         }
