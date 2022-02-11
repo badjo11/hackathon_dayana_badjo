@@ -9,7 +9,7 @@ const LogInModal = (props) => {
         let userr = { ...user, [e.target.name]: e.target.value };
         setUser(userr);
     }
-
+    console.log("qwe")
     function handleLogIn(e) {
         e.preventDefault();
         loginUser(user.username, user.password);
